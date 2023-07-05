@@ -9,7 +9,7 @@ read_float10_and_seek <- function(n, filecon, filename) {
   read_float10(n=n, offset=cur_pos, filename)
 }
 
-filename <- 'MEP PARA AND PLUM'
+filename <- 'data/MEP PARA AND PLUM'
 filecon <- file(filename, 'rb')
 seek(filecon, where = 9593)
 mep_rows = 113
@@ -85,8 +85,10 @@ mep <- tibble(
 ) %>%
   mutate(across(where(is.integer), ~ na_if(., -32768)))
 
+close(filecon)
 
-filename <- 'NAP+ecol var'
+
+filename <- 'data/NAP+ecol var'
 filecon <- file(filename, 'rb')
 seek(filecon, where = 7319)
 nap_rows = 114
@@ -145,3 +147,5 @@ nap <- tibble(
   mean_oxford_score = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
 ) %>%
   mutate(across(where(is.integer), ~ na_if(., -32768)))
+
+close(filecon)
