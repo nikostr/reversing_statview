@@ -5,7 +5,7 @@ using namespace Rcpp;
 using namespace std;
 
 // [[Rcpp::export]]
-NumericVector read_float10(int n, int offset, String filename){
+NumericVector read_float80(int n, int offset, String filename){
     ifstream myFile (filename, ios::in | ios::binary) ;
     myFile.seekg(offset);
     char buffer[10 * n];

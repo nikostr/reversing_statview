@@ -1,12 +1,12 @@
 library(tidyverse)
 library(Rcpp)
 
-sourceCpp('read_float10.cpp')
+sourceCpp('read_float80.cpp')
 
-read_float10_and_seek <- function(n, filecon, filename) {
+read_float80_and_seek <- function(n, filecon, filename) {
   cur_pos <- seek(filecon, where=NA)
   seek(filecon, where=cur_pos + n*10)
-  read_float10(n=n, offset=cur_pos, filename)
+  read_float80(n=n, offset=cur_pos, filename)
 }
 
 filename <- 'data/MEP PARA AND PLUM'
@@ -37,7 +37,7 @@ mep <- tibble(
   lower_flash = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   greatest_score_diff = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   highest_score = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
-  mean_score = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  mean_score = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
   tot_caught = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   totinf = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   H = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
@@ -45,18 +45,18 @@ mep <- tibble(
   'T' = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   P = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   OP = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
-  totinf_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  H_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  L_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  T_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  P_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  OP_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  totinf_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  H_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  L_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  T_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  P_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  OP_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
   nbreed = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   sbreed = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   nwinter = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
   swinter = readBin(filecon, integer(), n=mep_rows, size = 2, endian = 'big'),
-  nbreed_sbreed_by_2 = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  nwinter_swinter_by_2 = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  nbreed_sbreed_by_2 = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  nwinter_swinter_by_2 = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
   mating_syst_3_cat = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
   mating_syst_2_cat = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
   incub_sex_4_cat = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
@@ -69,19 +69,19 @@ mep <- tibble(
   migration = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
   nest_dispersion = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
   habitat = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
-  bl.obs.pl_exp.pl = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  bl.obs.mb_exp.mb = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  nb_sb_by_2.obs.pl_exp.pl = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  nb_sb_by_2.obs.mb_exp.mb = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  nw_sw_by_2.obs.mb_exp.mb = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  nw_sw_by_2.obs.pl_exp.pl = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  bre_wint_lat = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  bre_wint_lat.obs.pl_exp.pl = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  bre_wint_lat.obs.mb_exp.mb = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  bl.obs.pl_exp.pl = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  bl.obs.mb_exp.mb = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  nb_sb_by_2.obs.pl_exp.pl = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  nb_sb_by_2.obs.mb_exp.mb = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  nw_sw_by_2.obs.mb_exp.mb = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  nw_sw_by_2.obs.pl_exp.pl = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  bre_wint_lat = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  bre_wint_lat.obs.pl_exp.pl = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  bre_wint_lat.obs.mb_exp.mb = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
   habitat_recoded = readBin(filecon, integer(), n=mep_rows, size = 1, endian = 'big'),
-  arcsin_totinf_by_n = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  mean_oxf_score = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
-  oxf_birdos_score = read_float10_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  arcsin_totinf_by_n = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  mean_oxf_score = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
+  oxf_birdos_score = read_float80_and_seek(n=mep_rows, filecon=filecon, filename=filename),
 ) %>%
   mutate(across(where(is.integer), ~ na_if(., -32768)))
 
@@ -128,14 +128,14 @@ nap <- tibble(
   TRY = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
   MICRO = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
   OP = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
-  totinf_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  L_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  H_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  P_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  TRY_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  MICRO_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  OP_by_n = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  log_male_length = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  totinf_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  L_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  H_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  P_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  TRY_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  MICRO_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  OP_by_n = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  log_male_length = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
   rq_dev = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
   tb_dev = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
   rg_dev = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
@@ -143,8 +143,8 @@ nap <- tibble(
   av_dev = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
   vb_dev = readBin(filecon, integer(), n=nap_rows, size = 2, endian = 'big'),
   unknown_categorical = readBin(filecon, integer(), n=nap_rows, size = 1, endian = 'big'),
-  mean_dev = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
-  mean_oxford_score = read_float10_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  mean_dev = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
+  mean_oxford_score = read_float80_and_seek(n=nap_rows, filecon=filecon, filename=filename),
 ) %>%
   mutate(across(where(is.integer), ~ na_if(., -32768)))
 
