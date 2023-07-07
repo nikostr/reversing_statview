@@ -1,5 +1,7 @@
 # Reverse engineering StatView binaries to rescue old data
 
+[![DOI](https://zenodo.org/badge/662536997.svg)](https://zenodo.org/badge/latestdoi/662536997)
+
 This repo contains a minimal rescue of data from 
 
 Read, Andrew F., and Paul H. Harvey. “Reassessment of Comparative Evidence for Hamilton and Zuk Theory on the Evolution of Secondary Sexual Characters.” Nature 339, no. 6226 (June 1989): 618–20. https://doi.org/10.1038/339618a0.
