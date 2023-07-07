@@ -12,7 +12,7 @@ Read, Andrew F. “Passerine Polygyny: A Role for Parasites?” The American Nat
 
 The original data is present in the StatView files present in the `data` directory. All of the code to read the data is hacky: `read_float80.cpp` contains Rcpp code to convert `float80` to R `double`, and `read_binary.R` reads the data into R tibbles. A bunch of stuff (column names, the content of string columns, endianness) is hard-coded since I couldn't figure out the exact formatting of the StatView headers and couldn't be bothered to implement a way of reading the string columns, etc. Given the presence of truncated strings in what seems to be the StatView column specification there might also be reason to suspect that the files have in some way been corrupted since their creation. 
 
-The cleaned datasets are available at [doi:10.5281/zenodo.8117247](https://doi.org/10.5281/zenodo.8117247) and [doi:10.5281/zenodo.8116290](https://doi.org/10.5281/zenodo.8116290) respectively. This data was recovered by Nikos Tsardakas Renhuldt (me) and Tamara Emmenegger with input from Andrew Read.
+The cleaned datasets are available at [doi:10.5281/zenodo.8117246](https://doi.org/10.5281/zenodo.8117246) and [doi:10.5281/zenodo.8116290](https://doi.org/10.5281/zenodo.8116290) respectively. This data was recovered by Nikos Tsardakas Renhuldt (me) and Tamara Emmenegger with input from Andrew Read.
 
 ## Some notes on the StatView format
 
